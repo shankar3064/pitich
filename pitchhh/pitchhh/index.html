@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Reignite – Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared-styles.css">
+</head>
+<body>
+  <header>
+    <div class="header-left">
+        <img src="newlogo.png" alt="Reignite Logo">
+        <h1>Reignite <span class="chinese-name">焕新</span></h1>
+    </div>
+    <div id="ali-ai-assistant-bar">
+      <span class="mic-icon">🎤</span>
+      <span class="assistant-name">Ali the AI Assistant</span>
+      <span class="status-text">Tap to speak</span>
+    </div>
+  </header>
+
+  <nav class="navbar">
+    <ul id="navbar-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="enrolled-events.html">My Enrolled Events</a></li>
+      <li><a href="community-forum.html">Community Forum</a></li>
+      <li><a href="health-resources.html">Health & Resources</a></li>
+      <li><a href="login.html">Login/Register</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="main-content-wrapper">
+      <section class="hero-section">
+        <div class="hero-content">
+          <h2>Welcome to Reignite!</h2>
+          <p>Your community hub for seniors in Singapore. Discover, Connect and Celebrate.</p>
+          <div class="hero-buttons">
+            <a href="events.html" class="btn btn-primary">Explore Events</a>
+            <a href="community-forum.html" class="btn btn-secondary">Join Community</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="features-section">
+        <div class="feature-card">
+          <h3>Activities</h3>
+          <p>Find lively sports, arts, workshops, and social gatherings.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Connect</h3>
+          <p>Share stories, ask questions, and build friendships.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Resources</h3>
+          <p>Access health tips, wellness guides, and support services.</p>
+        </div>
+      </section>
+
+      <section class="testimonial-section">
+        <h2>What Members Say</h2>
+        <div class="testimonial-card">
+          <p>"Reignite changed my life! New hobbies and amazing friends."</p>
+          <span>— Mdm. Lim, 72</span>
+        </div>
+        <div class="testimonial-card">
+          <p>"Easy to find events, and the voice assistant helps a lot."</p>
+          <span>— Mr. Tan, 68</span>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div id="transcription-display"></div>
+
+  <footer>
+    <div class="footer-links">
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Volunteer</a></li>
+        <li><a href="#">Partner</a></li>
+      </ul>
+    </div>
+    <p>&copy; 2025 Reignite. All rights reserved. Connecting seniors to vibrant community life in Singapore.</p>
+  </footer>
+
+  <script src="voice-assistant.js"></script>
+  <script>
+    // Commands specific to the Home page
+    function processCommand(command) {
+        if (command.includes("explore events") || command.includes("show events")) {
+            speak("Taking you to the events page.");
+            window.location.href = "events.html";
+            return;
+        } else if (command.includes("join community") || command.includes("go to forum")) {
+            speak("Navigating to the community forum.");
+            window.location.href = "community-forum.html";
+            return;
+        } else if (command.includes("show my events") || command.includes("my activities")) {
+            speak("Taking you to your enrolled events.");
+            window.location.href = "enrolled-events.html";
+            return;
+        } else if (command.includes("show health resources") || command.includes("health tips")) {
+            speak("Navigating to health and resources.");
+            window.location.href = "health-resources.html";
+            return;
+        } else if (command.includes("login") || command.includes("register") || command.includes("sign in")) {
+            speak("Taking you to the login and registration page.");
+            window.location.href = "login.html";
+            return;
+        }
+        else {
+            speak("I can help you explore events, join our community, or find health resources. Just say 'Explore Events' or 'Join Community'.");
+        }
+    }
+
+    // --- Background Slideshow Script ---
+    document.addEventListener('DOMContentLoaded', () => {
+        const body = document.body;
+        // IMPORTANT: Ensure these paths are correct relative to your HTML file.
+        // Assuming images are in the same folder as index.html
+        const imagePaths = [
+            '1.jpg',
+            '2.jpg',
+            '3.jpg',
+            '4.jpg',
+            '5.jpg',
+            '6.jpg'
+        ];
+        let currentImageIndex = 0;
+        const intervalTime = 3000; // 3 seconds per image
+
+        function changeBackgroundImage() {
+            body.style.backgroundImage = `url('${imagePaths[currentImageIndex]}')`;
+            currentImageIndex = (currentImageIndex + 1) % imagePaths.length;
+        }
+
+        // Preload images (optional, but recommended for smoother transitions)
+        imagePaths.forEach(path => {
+            const img = new Image();
+            img.src = path;
+        });
+
+        // Set the first image immediately
+        changeBackgroundImage();
+
+        // Start the slideshow
+        setInterval(changeBackgroundImage, intervalTime);
+    });
+  </script>
+</body>
+</html>

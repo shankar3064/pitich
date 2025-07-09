@@ -1,0 +1,1125 @@
+/* shared-styles.css */
+
+/* Global Styles */
+body {
+    font-family: 'Open Sans', Arial, sans-serif;
+    /* Styles for the background slideshow */
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-color: #FFFDE7; /* Very light yellow background (will be visible before images load or if no images) */
+    color: #333; /* Dark text for readability */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure full page height */
+    transition: background-image 1s ease-in-out; /* Smooth transition for image changes */
+    font-size: 1.1em; /* Increased base font size for better readability */
+}
+
+/* Header Section */
+header {
+    background: rgba(211, 47, 47, 0.95); /* Primary Red */
+    color: #fff;
+    padding: 1em 1em;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Distribute space between left and AI bar */
+    position: relative;
+}
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 0.8em;
+}
+.header-left img {
+    max-width: 80px;
+    height: auto;
+    border-radius: 8px;
+}
+header h1 {
+    margin: 0;
+    font-size: 2.2em;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+/* Styling for the Chinese name in the header */
+header h1 .chinese-name {
+    font-size: 0.8em; /* Slightly smaller than the English name */
+    font-weight: 400; /* Lighter font weight */
+    margin-left: 0.5em; /* Space between English and Chinese names */
+    /* If you want a specific Chinese font, add it here, e.g.: */
+    /* font-family: "Noto Sans SC", sans-serif; */
+}
+
+
+/* Ali the AI Assistant Bar Styles (in header) */
+#ali-ai-assistant-bar {
+    background: #FFC107; /* Accent Yellow background */
+    color: #333; /* Dark text */
+    padding: 0.8em 1.5em; /* Padding for the bar */
+    border-radius: 50px; /* Rounded pill shape */
+    display: flex;
+    align-items: center;
+    gap: 0.8em; /* Space between icon, name, and status */
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1.1em; /* Text size for the bar */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2); /* Subtle shadow */
+    cursor: pointer; /* Indicates it's clickable */
+    transition: background 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+    margin-left: auto; /* Push to the right */
+}
+
+#ali-ai-assistant-bar:hover {
+    background: #FFA000; /* Darker yellow on hover */
+    transform: translateY(-2px); /* Slight lift on hover */
+}
+
+#ali-ai-assistant-bar .mic-icon {
+    font-size: 1.5em; /* Size of the microphone icon */
+    line-height: 1; /* Ensures icon is vertically centered */
+    animation: pulse-bar 1.5s infinite ease-in-out; /* Subtle pulse animation for the icon */
+}
+
+/* Style for when the assistant is listening */
+#ali-ai-assistant-bar.listening {
+    background: #333; /* Dark grey when listening for strong contrast */
+    color: #fff;
+}
+
+#ali-ai-assistant-bar.listening .mic-icon {
+    animation: none; /* Stop pulse when listening */
+    transform: scale(1.1); /* Slightly larger when listening */
+}
+
+@keyframes pulse-bar {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+
+/* Navigation Bar */
+.navbar {
+    background: rgba(255, 255, 255, 0.9); /* Keep white for cleanliness */
+    padding: 0.8em 1em;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5em;
+}
+.navbar li a {
+    text-decoration: none;
+    color: #D32F2F; /* Primary Red text */
+    font-size: 1.2em;
+    padding: 0.6em 1.2em;
+    border-radius: 5px;
+    transition: background 0.2s, color 0.2s;
+}
+.navbar li a:hover {
+    background: #FFF8E1; /* Very light yellow for hover */
+    color: #B71C1C; /* Darker Red on hover */
+}
+.navbar li a.active { /* Style for active page link */
+    background: #D32F2F; /* Primary Red */
+    color: #fff;
+}
+
+/* General Content Styling */
+main {
+    flex-grow: 1;
+    padding-bottom: 2em;
+}
+
+/* Main Content Wrapper for Centering */
+.main-content-wrapper {
+    max-width: 1000px; /* Max width for content */
+    margin: 2em auto; /* Center the content horizontally with auto margins */
+    padding: 0 1.5em; /* Padding on sides for smaller screens */
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+/* Styles for the translucent background boxes on the home page */
+.hero-section,
+.features-section,
+.testimonial-section {
+    background: rgba(255, 255, 255, 0.9); /* White with 90% opacity */
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Stronger shadow */
+    padding: 2.5em; /* Generous padding */
+    margin-bottom: 2.5em; /* Space between sections */
+    box-sizing: border-box;
+}
+
+/* Adjustments for the content within these new sections */
+.hero-section .hero-content {
+    text-align: center;
+}
+
+.features-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2em;
+    padding-top: 2.5em; /* Adjust padding for inner elements */
+    padding-bottom: 2.5em;
+}
+
+.testimonial-section {
+    padding-top: 2.5em; /* Adjust padding for inner elements */
+    padding-bottom: 2.5em;
+    text-align: center; /* Center heading */
+}
+
+
+/* Adjust individual card width for responsiveness and centering */
+.feature-card,
+.testimonial-card {
+    background: #fff; /* Keep inner cards white */
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(44, 62, 80, 0.1);
+    padding: 2em;
+    text-align: center; /* Center text within each card */
+    flex: 1; /* Allow cards to grow and shrink */
+    min-width: 280px; /* Minimum width for cards before wrapping */
+    max-width: 30%; /* Approx. 3 cards per row for features, adjust as needed */
+    box-sizing: border-box;
+}
+
+.testimonial-card {
+    max-width: 45%; /* Max 2 testimonials per row */
+}
+
+
+h2 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2.5em;
+  color: #D32F2F; /* Primary Red */
+  margin-top: 0.8em;
+  margin-bottom: 0.5em;
+  text-align: center; /* Center headings within the wrapper */
+}
+p {
+  font-size: 1.2em;
+  line-height: 1.7;
+  margin-bottom: 2em;
+  color: #555;
+  text-align: center; /* Center paragraphs within the wrapper */
+}
+
+/* Hero section specific adjustments */
+.hero-content {
+    text-align: center; /* Ensure hero content is centered */
+}
+.hero-buttons {
+    display: flex; /* Use flexbox for buttons */
+    justify-content: center; /* Center the buttons horizontally */
+    gap: 1.5em; /* Space between buttons */
+    margin-top: 2em;
+    margin-bottom: 3em;
+}
+
+/* Buttons (General) */
+.btn {
+  display: inline-block;
+  padding: 1.2em 3em;
+  border-radius: 8px;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 1.2em;
+  transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.btn-primary {
+  background: #D32F2F; /* Primary Red */
+  color: #fff;
+}
+.btn-primary:hover {
+  background: #B71C1C; /* Darker Red */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+.btn-secondary {
+  background: #FFC107; /* Accent Yellow */
+  color: #333; /* Dark text on yellow */
+}
+.btn-secondary:hover {
+  background: #FFA000; /* Darker Yellow */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+/* Event Card Styling (Used across Events & Enrolled Events) */
+.event-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(44, 62, 80, 0.1);
+  padding: 2em; /* Increased padding for more breathing room */
+  min-width: 100%; /* Default for carousel */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left; /* Keep text left-aligned within cards */
+  /* Remove width/flex properties specific to carousel or fixed grids here */
+}
+.event-card h2 {
+  margin-top: 0;
+  color: #D32F2F; /* Primary Red */
+  font-size: 2em;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 0.8em;
+  line-height: 1.3;
+  text-align: left; /* Keep card titles left-aligned */
+  display: flex; /* Use flexbox for title and Ali button */
+  align-items: center; /* Vertically align them */
+  justify-content: space-between; /* Push Ali button to the right */
+  padding-right: 0.5em; /* Small padding on right for button */
+}
+
+/* Style for the Ali button next to event names */
+.event-ali-btn {
+    background: #FFC107; /* Accent Yellow */
+    color: #333; /* Dark text */
+    border: none;
+    padding: 0.4em 0.8em;
+    border-radius: 20px; /* Pill shape */
+    font-size: 0.7em; /* Smaller than title text */
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    margin-left: 0.8em; /* Space between title and button */
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    flex-shrink: 0; /* Prevent it from shrinking */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.event-ali-btn:hover {
+    background: #FFA000; /* Darker yellow on hover */
+    transform: translateY(-1px); /* Slight lift on hover */
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+
+.event-details {
+  margin: 1em 0;
+  font-size: 1.8em; /* MUCH BIGGER font size for details */
+  line-height: 1.9; /* Adjusted line height for better readability with larger font */
+  color: #444;
+  text-align: left; /* Keep card details left-aligned */
+}
+.event-details strong {
+    color: #D32F2F; /* Primary Red */
+    font-weight: 700;
+}
+.enroll-btn {
+  background: #FFC107; /* Accent Yellow */
+  color: #333; /* Dark text on yellow */
+  border: none;
+  padding: 1.2em 0;
+  border-radius: 8px;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  margin-top: 1em;
+}
+.enroll-btn:hover {
+  background: #FFA000; /* Darker Yellow */
+}
+.unenroll-btn {
+    background: #D32F2F; /* Primary Red for unenroll (danger) */
+    color: #fff;
+    border: none;
+    padding: 0.9em 0;
+    border-radius: 8px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    margin-top: 1em;
+}
+.unenroll-btn:hover {
+    background: #B71C1C; /* Darker Red */
+}
+
+/* Styling for main event images to contain */
+.event-card-main-img {
+    width: 100%; /* Take full width of the card */
+    max-height: 250px; /* Set a maximum height to control size */
+    object-fit: contain; /* Scales the image to fit entirely, no cropping */
+    background-color: #f0f0f0; /* Optional: A subtle background for the empty space if images don't fill the box */
+    border-radius: 10px; /* Rounded corners */
+    margin-bottom: 1.5em; /* Space below the image */
+    display: block; /* Ensure it behaves as a block element */
+}
+
+/* Adjust transcription display to be above the new bar (if it were fixed at bottom) */
+#transcription-display {
+    position: fixed;
+    bottom: 20px; /* Adjust as needed, considering footer height */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.85);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 12px;
+    font-size: 1.4em;
+    z-index: 1001;
+    max-width: 90%;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+#transcription-display.active {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-10px);
+}
+
+/* Footer Section */
+footer {
+    background: rgba(211, 47, 47, 0.95);
+    color: #fff;
+    padding: 2em 1em;
+    text-align: center;
+    font-size: 0.95em;
+    flex-shrink: 0;
+    margin-top: auto;
+}
+footer .footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1em 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5em;
+}
+footer .footer-links a {
+    text-decoration: none;
+    color: #fff;
+    transition: color 0.2s;
+}
+footer .footer-links a:hover {
+    color: #FFEB3B;
+    text-decoration: underline;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1em;
+    }
+    .header-left {
+        width: 100%;
+        justify-content: flex-start;
+        margin-bottom: 0.5em;
+    }
+    header h1 {
+        font-size: 1.8em;
+        text-align: left;
+    }
+    /* Responsive adjustments for Ali bar */
+    #ali-ai-assistant-bar {
+        width: 100%; /* Take full width on mobile */
+        margin-left: 0; /* Remove auto margin */
+        border-radius: 0; /* No rounded corners on full width bar */
+        font-size: 1em; /* Smaller font on mobile */
+        padding: 0.8em 1em;
+        justify-content: flex-start; /* Align content to start */
+    }
+    #ali-ai-assistant-bar .mic-icon {
+        font-size: 1.2em;
+    }
+    .navbar ul {
+        gap: 1em;
+    }
+    .navbar li a {
+        font-size: 1.1em;
+        padding: 0.5em 1em;
+    }
+    main {
+        padding: 1.5em 1em;
+        padding-bottom: 2em;
+    }
+    footer {
+        margin-bottom: 0;
+    }
+    .main-content-wrapper {
+        margin: 1.5em auto; /* Adjust top/bottom margin for mobile */
+        padding: 0 1em; /* More padding on smaller screens */
+    }
+    /* Mobile adjustments for the new translucent boxes */
+    .hero-section,
+    .features-section,
+    .testimonial-section {
+        padding: 2em 1.5em; /* Reduce padding on mobile */
+        margin-bottom: 1.5em; /* Reduce margin between sections */
+    }
+    h2 {
+        font-size: 2em;
+    }
+    .event-card-main-img {
+        max-height: 180px;
+        margin-bottom: 1em;
+    }
+    p {
+        font-size: 1em;
+    }
+    .btn {
+        width: 100%;
+        padding: 1em 1.5em;
+        font-size: 1.1em;
+    }
+    .filter-bar {
+      flex-direction: column;
+      align-items: stretch;
+      margin: 1.5em auto;
+      padding: 1.2em;
+    }
+    .filter-group {
+        width: 100%;
+        align-items: center;
+    }
+    .filter-bar select,
+    .filter-bar input[type="text"],
+    .filter-bar input[type="date"] {
+      width: 100%;
+      margin-bottom: 1em;
+    }
+    .filter-bar button {
+      width: 100%;
+      margin-top: 0.5em;
+      font-size: 1.1em;
+      padding: 0.8em 2em;
+    }
+    .events-container {
+      flex-direction: row; /* Keep as row for carousel */
+      align-items: flex-start;
+      margin: 1.5em auto;
+      padding: 0 1em;
+      overflow-x: auto; /* Allow horizontal scrolling on small screens if many events */
+      scroll-snap-type: x mandatory; /* Optional: for smoother snapping */
+    }
+    .event-card {
+      min-width: 90%; /* Adjust width for better fit on small screens */
+      max-width: 350px;
+      padding: 1.5em;
+      scroll-snap-align: start; /* Optional: for smoother snapping */
+    }
+    .event-card h2 {
+        font-size: 1.8em;
+        flex-direction: column; /* Stack title and Ali button on mobile */
+        align-items: flex-start;
+        padding-right: 0;
+    }
+    .event-ali-btn {
+        margin-top: 0.2em; /* Space from title on mobile */
+        margin-left: 0; /* Reset margin */
+    }
+    .event-details {
+        font-size: 1.4em;
+    }
+    .enroll-btn, .unenroll-btn {
+        font-size: 1.1em;
+    }
+    .carousel-nav-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.8em;
+    }
+    #transcription-display {
+        font-size: 1.2em;
+        padding: 10px 20px;
+        bottom: 20px;
+    }
+    .event-counter-display {
+        font-size: 1.2em;
+        padding: 0.8em 1.5em;
+    }
+    /* Mobile adjustments for feature/testimonial cards */
+    .feature-card,
+    .testimonial-card {
+        max-width: 100%; /* Take full width on mobile */
+        margin-bottom: 1em; /* Add space between stacked cards */
+    }
+
+    /* Specific to Enrolled Events Page layout for mobile */
+    #enrolled-events-container {
+        flex-direction: row; /* Keep horizontal on mobile */
+        overflow-x: auto; /* Allow horizontal scrolling */
+        scroll-snap-type: x mandatory; /* For smooth snapping */
+        justify-content: flex-start; /* Align items to the start */
+        padding: 1em;
+    }
+
+    #enrolled-events-container .event-card {
+        min-width: 85%; /* Make cards a bit wider for mobile scrolling */
+        max-width: 85%; /* Ensure they don't grow too large */
+        scroll-snap-align: start;
+        margin-right: 20px; /* Space between cards */
+        flex-shrink: 0; /* Prevent cards from shrinking */
+    }
+}
+
+
+/* Specific to Events Page for carousel control */
+.events-container {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden; /* Hide overflowing cards */
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 1em;
+    position: relative;
+    max-width: 900px; /* Match enrolled-events-container max-width */
+    margin: 2em auto; /* Center carousel */
+}
+.event-card.active {
+    display: flex;
+    opacity: 1;
+    transform: translateX(0);
+}
+.event-card {
+    min-width: 100%;
+    transition: transform 0.2s, box-shadow 0.2s, opacity 0.5s;
+    opacity: 0;
+    transform: translateX(100%);
+}
+.events-container .event-card:not(.active) {
+    display: none;
+}
+
+/* Carousel Navigation Buttons */
+.carousel-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(211, 47, 47, 0.7);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 2.2em;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.carousel-nav-btn:hover {
+    background: rgba(183, 28, 28, 0.9);
+}
+#prev-event-btn {
+    left: 10px;
+}
+#next-event-btn {
+    right: 10px;
+}
+
+/* --- Specific to Enrolled Events Page layout (Updated for horizontal display) --- */
+#enrolled-events-page h2 {
+    background: rgba(255, 255, 255, 0.9);
+    max-width: 900px; /* Keep max width for title */
+    margin: 2em auto 1em auto;
+    padding: 0.5em 1em;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(44, 62, 80, 0.1);
+}
+#enrolled-events-container {
+    max-width: 900px; /* Constrain width for better layout control */
+    margin: 2em auto;
+    display: flex; /* Use flexbox */
+    flex-wrap: nowrap; /* PREVENT WRAPPING - essential for horizontal scroll */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    -webkit-overflow-scrolling: touch; /* For smoother scrolling on iOS */
+    gap: 2em; /* Space between cards */
+    padding: 1em; /* Add some internal padding */
+    justify-content: flex-start; /* Align items to the start, allowing overflow */
+    scroll-snap-type: x mandatory; /* Optional: for smoother snapping */
+    align-items: stretch; /* Ensure cards have equal height if content varies */
+}
+
+#enrolled-events-container .event-card {
+    min-width: 320px; /* Set a minimum width for cards */
+    max-width: 320px; /* Set a fixed width to ensure consistency */
+    flex-shrink: 0; /* Prevent cards from shrinking */
+    scroll-snap-align: start; /* Optional: for smoother snapping */
+    /* Other existing event-card styles (padding, borders, etc.) remain */
+}
+
+/* Added for hover effect on "Explore events now!" link */
+.no-events-message {
+    font-size: 1.5em;
+    color: #555;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2em;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(44, 62, 80, 0.1);
+    max-width: 600px;
+    margin: 2em auto;
+    text-align: center; /* Ensure message is centered */
+}
+
+.no-events-message a.explore-events-link {
+    color: #D32F2F; /* Primary Red */
+    text-decoration: none; /* Remove default underline */
+    font-weight: 600; /* Make it a bit bolder */
+    transition: color 0.2s ease-in-out, text-decoration 0.2s ease-in-out;
+}
+
+.no-events-message a.explore-events-link:hover {
+    color: #B71C1C; /* Darker Red on hover */
+    text-decoration: underline; /* Add underline on hover */
+}
+
+/* Specific styles for filter bar centering */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 1.8em;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 2.2em;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(44, 62, 80, 0.1);
+  max-width: 950px;
+  margin: 2em auto;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 190px;
+}
+
+.filter-group label {
+  font-weight: 600;
+  color: #D32F2F;
+  margin-bottom: 0.6em;
+  font-size: 1.2em;
+}
+
+.filter-bar select,
+.filter-bar input[type="text"],
+.filter-bar input[type="date"] {
+  padding: 0.9em 1.1em;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1.2em;
+  width: 100%;
+  max-width: 220px;
+}
+
+.filter-bar button {
+  padding: 1.1em 3em;
+  background: #D32F2F;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.25em;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.filter-bar button:hover {
+  background: #B71C1C;
+}
+
+/* Event Counter Display */
+.event-counter-display {
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: 600;
+    color: #D32F2F;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 1em 2em;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(44, 62, 80, 0.1);
+    max-width: 400px;
+    margin: 1.5em auto 1em auto;
+}
+
+/* --- Community Forum Specific Styles --- */
+
+.forum-topics h3,
+.new-post-section h3 {
+    text-align: center; /* Center the sub-headings */
+    font-size: 2em;
+    color: #D32F2F;
+    margin-top: 1.5em;
+    margin-bottom: 1em;
+}
+
+/* Container for Topic Cards to allow centering and wrapping */
+.topic-cards-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow cards to wrap to the next line */
+    justify-content: center; /* Center the cards horizontally */
+    gap: 2em; /* Space between cards */
+    margin-top: 1.5em;
+    margin-bottom: 2.5em;
+}
+
+.topic-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(44, 62, 80, 0.1);
+    padding: 2em;
+    text-align: center; /* Center text within each card */
+    flex: 1; /* Allows cards to grow and shrink */
+    min-width: 280px; /* Minimum width before wrapping */
+    max-width: 45%; /* Approximately two cards per row on larger screens */
+    box-sizing: border-box; /* Include padding in width calculation */
+    display: flex; /* Use flexbox to align content within the card */
+    flex-direction: column;
+    justify-content: space-between; /* Pushes the button to the bottom */
+}
+
+.topic-card h4 {
+    color: #D32F2F;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5em;
+    margin-top: 0;
+    margin-bottom: 0.8em;
+}
+
+.topic-card p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #555;
+    flex-grow: 1; /* Allows paragraph to take available space */
+    margin-bottom: 1.5em; /* Space between text and button */
+}
+
+.topic-card .btn-primary.btn-small {
+    padding: 0.8em 1.8em; /* Slightly smaller padding for these buttons */
+    font-size: 1em; /* Smaller font for these buttons */
+    margin-top: auto; /* Push button to the bottom if content height varies */
+}
+
+
+/* New Post Section Styling */
+.new-post-section {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(44, 62, 80, 0.1);
+    padding: 2.5em;
+    max-width: 700px; /* Limit width of the form for better readability */
+    margin: 2.5em auto; /* Center the form section */
+    box-sizing: border-box;
+}
+
+.new-post-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em; /* Space between form groups */
+}
+
+.new-post-section .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.new-post-section label {
+    font-weight: 600;
+    color: #D32F2F;
+    margin-bottom: 0.6em;
+    font-size: 1.1em;
+}
+
+.new-post-section input[type="text"],
+.new-post-section textarea {
+    padding: 1em 1.2em;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1.1em;
+    width: 100%;
+    box-sizing: border-box; /* Include padding in width */
+}
+
+.new-post-section textarea {
+    resize: vertical; /* Allow vertical resizing */
+    min-height: 100px;
+}
+
+.new-post-section button[type="submit"] {
+    align-self: center; /* Center the submit button within the form */
+    padding: 1.2em 3em;
+    font-size: 1.2em;
+    width: auto; /* Allow button to size according to content */
+}
+
+/* Responsive adjustments for forum page */
+@media (max-width: 768px) {
+    .forum-topics h3,
+    .new-post-section h3 {
+        font-size: 1.8em;
+    }
+    .topic-card {
+        max-width: 100%; /* Stack topic cards on small screens */
+        margin-bottom: 1em; /* Space between stacked cards */
+    }
+    .topic-cards-container {
+        gap: 1.5em;
+        padding: 0 1em; /* Add some padding for mobile */
+    }
+    .new-post-section {
+        padding: 1.5em;
+        margin: 1.5em auto;
+    }
+    .new-post-section input[type="text"],
+    .new-post-section textarea {
+        font-size: 1em;
+        padding: 0.8em 1em;
+    }
+    .new-post-section button[type="submit"] {
+        width: 100%; /* Make button full width on mobile */
+        padding: 1em 2em;
+        font-size: 1.1em;
+    }
+}
+
+/* --- Health & Resources Specific Styles --- */
+
+/* Ensures the main heading and introductory paragraph are centered */
+.main-content-wrapper h2,
+.main-content-wrapper p {
+    text-align: center;
+}
+
+/* Container for category cards to allow centering and wrapping */
+.category-cards-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow cards to wrap to the next line */
+    justify-content: center; /* Center the cards horizontally */
+    gap: 2.5em; /* Space between cards */
+    margin-top: 2em;
+    margin-bottom: 3em;
+}
+
+.category-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(44, 62, 80, 0.1);
+    padding: 2em;
+    text-align: center; /* Center text within each card */
+    flex: 1; /* Allows cards to grow and shrink */
+    min-width: 280px; /* Minimum width before wrapping */
+    max-width: 45%; /* Approximately two cards per row on larger screens */
+    box-sizing: border-box; /* Include padding in width calculation */
+    display: flex; /* Use flexbox for internal content alignment */
+    flex-direction: column;
+    justify-content: flex-start; /* Align content to the top */
+}
+
+.category-card h3 {
+    color: #D32F2F; /* Primary Red */
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.8em;
+    margin-top: 0;
+    margin-bottom: 1.2em;
+}
+
+.category-card ul {
+    list-style: none; /* Remove bullet points */
+    padding: 0;
+    margin: 0;
+    text-align: center; /* Center list items within the card */
+    flex-grow: 1; /* Allows list to take up available space */
+}
+
+.category-card ul li {
+    margin-bottom: 0.8em;
+}
+
+.category-card ul li a {
+    text-decoration: none;
+    color: #333; /* Dark text for links */
+    font-size: 1.2em;
+    transition: color 0.2s ease;
+    padding: 0.2em 0; /* Add padding for a larger click area */
+    display: block; /* Make the whole link block clickable */
+}
+
+.category-card ul li a:hover {
+    color: #D32F2F; /* Primary Red on hover */
+    text-decoration: underline; /* Underline on hover */
+}
+
+/* Responsive adjustments for Health & Resources page */
+@media (max-width: 768px) {
+    .category-cards-container {
+        gap: 1.5em;
+        padding: 0 1em; /* Add some padding for mobile */
+    }
+    .category-card {
+        max-width: 100%; /* Stack category cards on small screens */
+        margin-bottom: 0; /* Remove extra margin when stacked */
+    }
+    .category-card h3 {
+        font-size: 1.6em;
+    }
+    .category-card ul li a {
+        font-size: 1.1em;
+    }
+}
+
+/* --- Login/Register Page Specific Styles (Added/Modified for Centering) --- */
+
+/* Centering the main content area for login/register */
+.login-register-main {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center;     /* Center vertically (if main is taller than content) */
+    flex-grow: 1;            /* Allow it to take available space */
+    padding: 2em 1.5em;      /* Add some padding */
+    box-sizing: border-box;  /* Include padding in width */
+}
+
+/* Container for the login/register cards */
+.auth-container {
+    display: flex;
+    flex-direction: column; /* Stack cards vertically on smaller screens, allow centering */
+    align-items: center;    /* Center items (cards) horizontally within auth-container */
+    gap: 2em;               /* Space between login and register cards when both are potentially visible */
+    width: 100%;            /* Take full width of its parent (.login-register-main) */
+    max-width: 450px;       /* Max width for the entire container of forms */
+    margin: auto;           /* Ensure it's centered if .login-register-main allows */
+}
+
+.auth-form-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(44, 62, 80, 0.1);
+    padding: 2.5em;
+    width: 100%; /* Take full width of auth-container */
+    max-width: 450px; /* Max width for individual cards */
+    box-sizing: border-box;
+    text-align: center; /* Center text and form elements within the card */
+}
+
+.auth-form-card h2 {
+    font-size: 2.2em;
+    color: #D32F2F; /* Primary Red */
+    margin-top: 0;
+    margin-bottom: 1em;
+    text-align: center; /* Explicitly center the heading */
+}
+
+.auth-form-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2em; /* Space between form groups */
+    margin-top: 1.5em;
+}
+
+.auth-form-card .form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center labels and inputs horizontally within the form group */
+    width: 100%;
+}
+
+.auth-form-card label {
+    font-weight: 600;
+    color: #D32F2F;
+    margin-bottom: 0.6em;
+    font-size: 1.1em;
+    width: 100%; /* Make label take full width to help centering text */
+    text-align: center; /* Center label text */
+}
+
+.auth-form-card input[type="email"],
+.auth-form-card input[type="password"],
+.auth-form-card input[type="text"] {
+    padding: 1em 1.2em;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1.1em;
+    width: 90%; /* Adjust width to leave some space, still looks centered */
+    max-width: 300px; /* A max-width for inputs */
+    box-sizing: border-box;
+    text-align: center; /* Center input text */
+}
+
+.auth-form-card button[type="submit"] {
+    align-self: center; /* Center the button within the form */
+    margin-top: 1.5em;
+    padding: 1.2em 3em;
+    font-size: 1.2em;
+    width: auto; /* Allow button to size according to content */
+    min-width: 150px; /* Give it a minimum width */
+}
+
+.auth-switch-text {
+    margin-top: 1.5em;
+    font-size: 1.1em;
+    color: #555;
+    text-align: center; /* Ensure this text is centered */
+}
+
+.auth-switch-text a {
+    color: #D32F2F; /* Primary Red */
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.auth-switch-text a:hover {
+    color: #B71C1C; /* Darker Red on hover */
+    text-decoration: underline;
+}
+
+/* Responsive Adjustments for Login/Register */
+@media (max-width: 768px) {
+    .auth-container {
+        padding: 0 1em; /* Add horizontal padding to the container */
+    }
+    .auth-form-card {
+        padding: 2em 1.5em; /* Reduce padding on cards for smaller screens */
+    }
+    .auth-form-card h2 {
+        font-size: 2em;
+    }
+    .auth-form-card input[type="email"],
+    .auth-form-card input[type="password"],
+    .auth-form-card input[type="text"] {
+        width: 100%; /* Inputs take full width on mobile */
+        max-width: none; /* Remove max-width on mobile */
+    }
+    .auth-form-card button[type="submit"] {
+        width: 100%; /* Buttons take full width on mobile */
+        min-width: unset; /* Remove min-width on mobile */
+    }
+}

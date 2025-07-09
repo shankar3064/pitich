@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Forum - Reignite</title>
+    <link rel="stylesheet" href="shared-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <img src="newlogo.png" alt="Reignite Logo">
+            <h1>Reignite</h1>
+        </div>
+        <div id="ali-ai-assistant-bar">
+          <span class="mic-icon">🎤</span>
+          <span class="assistant-name">Ali the AI Assistant</span>
+          <span class="status-text">Tap to speak</span>
+        </div>
+    </header>
+
+    <nav class="navbar">
+        <ul id="navbar-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="enrolled-events.html">My Enrolled Events</a></li>
+            <li><a href="community-forum.html" class="active">Community Forum</a></li>
+            <li><a href="health-resources.html">Health & Resources</a></li>
+            <li><a href="login.html">Login/Register</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="main-content-wrapper">
+            <h2>Community Forum</h2>
+            <p>Welcome to our vibrant community forum! Connect with fellow seniors, share your experiences, ask questions, and discuss topics important to you.</p>
+
+            <section class="forum-topics">
+                <h3>Popular Topics</h3>
+                <div class="topic-cards-container">
+                    <div class="topic-card">
+                        <h4>Healthy Living Tips</h4>
+                        <p>Share and discover advice on nutrition, exercise, and mental well-being.</p>
+                        <a href="#" class="btn btn-primary btn-small">View Topic</a>
+                    </div>
+                    <div class="topic-card">
+                        <h4>Local Events Discussion</h4>
+                        <p>Discuss upcoming events, share reviews, and find companions for activities.</p>
+                        <a href="#" class="btn btn-primary btn-small">View Topic</a>
+                    </div>
+                    <div class="topic-card">
+                        <h4>Hobbies & Interests</h4>
+                        <p>Connect with others who share your passions, from gardening to reading.</p>
+                        <a href="#" class="btn btn-primary btn-small">View Topic</a>
+                    </div>
+                    <div class="topic-card">
+                        <h4>Technology Help</h4>
+                        <p>Get tips and ask questions about using smartphones, computers, and the internet.</p>
+                        <a href="#" class="btn btn-primary btn-small">View Topic</a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="new-post-section">
+                <h3>Start a New Discussion</h3>
+                <form>
+                    <div class="form-group">
+                        <label for="post-title">Topic Title:</label>
+                        <input type="text" id="post-title" name="post-title" placeholder="e.g., Best parks for a morning walk" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="post-content">Your Message:</label>
+                        <textarea id="post-content" name="post-content" rows="6" placeholder="Share your thoughts here..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Post Discussion</button>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <div id="transcription-display"></div>
+
+    <footer>
+        <div class="footer-links">
+            <ul>
+                <li><a href="#">About Reignite</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="#">Volunteer with Us</a></li>
+                <li><a href="#">Partner with Us</a></li>
+            </ul>
+        </div>
+        <p>&copy; 2025 Reignite. All rights reserved. Connecting seniors to vibrant community life in Singapore.</p>
+    </footer>
+
+    <script src="voice-assistant.js"></script>
+    <script>
+        // Voice assistant commands for this page
+        function processCommand(command) {
+            command = command.toLowerCase().trim();
+
+            if (command.includes("go home") || command.includes("go to home page")) {
+                speak("Taking you to the home page.");
+                window.location.href = "index.html";
+                return;
+            } else if (command.includes("explore events") || command.includes("show events")) {
+                speak("Taking you to the events page.");
+                window.location.href = "events.html";
+                return;
+            } else if (command.includes("show my events") || command.includes("my activities")) {
+                speak("Taking you to your enrolled events.");
+                window.location.href = "enrolled-events.html";
+                return;
+            } else if (command.includes("go to health and resources") || command.includes("show resources") || command.includes("health info")) {
+                speak("Navigating to health and resources.");
+                window.location.href = "health-resources.html";
+                return;
+            } else if (command.includes("login") || command.includes("register") || command.includes("sign in")) {
+                speak("Taking you to the login and registration page.");
+                window.location.href = "login.html";
+                return;
+            } else if (command.includes("start new discussion") || command.includes("make a post")) {
+                document.getElementById('post-title').focus();
+                speak("Ready to start a new discussion. What is the topic title?");
+            } else if (command.includes("view healthy living tips")) {
+                speak("Opening the Healthy Living Tips topic.");
+                // This will click the first "View Topic" button. For specific topics, you'd need more specific IDs/classes.
+                document.querySelector('.topic-card .btn-primary').click();
+            } else {
+                speak("I can help you navigate the forum or start a new discussion. Just say 'Start new discussion' or 'Go home'.");
+            }
+        }
+
+        // Expose speak function to global scope if voice-assistant.js needs it
+        if (typeof window.speak === 'undefined') {
+            window.speak = function(message) {
+                console.log("Voice Assistant says: " + message);
+                if ('speechSynthesis' in window) {
+                    const utterance = new SpeechSynthesisUtterance(message);
+                    speechSynthesis.speak(utterance);
+                }
+            };
+        }
+    </script>
+</body>
+</html>

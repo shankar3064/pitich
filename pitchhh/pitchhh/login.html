@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Register - Reignite</title>
+    <link rel="stylesheet" href="shared-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <img src="newlogo.png" alt="Reignite Logo">
+            <h1>Reignite</h1>
+        </div>
+        <!-- New Ali the AI Assistant Bar - moved into header -->
+        <div id="ali-ai-assistant-bar">
+          <span class="mic-icon">🎤</span>
+          <span class="assistant-name">Ali the AI Assistant</span>
+          <span class="status-text">Tap to speak</span>
+        </div>
+    </header>
+
+    <nav class="navbar">
+        <ul id="navbar-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="enrolled-events.html">My Enrolled Events</a></li>
+            <li><a href="community-forum.html">Community Forum</a></li>
+            <li><a href="health-resources.html">Health & Resources</a></li>
+            <li><a href="login.html" class="active">Login/Register</a></li>
+        </ul>
+    </nav>
+
+    <main class="login-register-main">
+        <div class="auth-container">
+            <div class="auth-form-card">
+                <h2>Login</h2>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="login-email">Email:</label>
+                        <input type="email" id="login-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password:</label>
+                        <input type="password" id="login-password" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+                <p class="auth-switch-text">Don't have an account? <a href="#" id="show-register">Register here</a></p>
+            </div>
+
+            <div class="auth-form-card" id="register-card" style="display: none;">
+                <h2>Register</h2>
+                <form id="register-form">
+                    <div class="form-group">
+                        <label for="register-name">Full Name:</label>
+                        <input type="text" id="register-name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-email">Email:</label>
+                        <input type="email" id="register-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password">Password:</label>
+                        <input type="password" id="register-password" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-confirm-password">Confirm Password:</label>
+                        <input type="password" id="register-confirm-password" name="confirm-password" required>
+                    </div>
+                    <button type="submit" class="btn btn-secondary">Register</button>
+                </form>
+                <p class="auth-switch-text">Already have an account? <a href="#" id="show-login">Login here</a></p>
+            </div>
+        </div>
+    </main>
+
+    <div id="transcription-display"></div>
+
+    <footer>
+        <div class="footer-links">
+            <ul>
+                <li><a href="#">About Reignite</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="#">Volunteer with Us</a></li>
+                <li><a href="#">Partner with Us</a></li>
+            </ul>
+        </div>
+        <p>&copy; 2025 Reignite. All rights reserved. Connecting seniors to vibrant community life in Singapore.</p>
+    </footer>
+
+    <script src="voice-assistant.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const loginCard = document.getElementById('login-form').closest('.auth-form-card');
+            const registerCard = document.getElementById('register-card');
+            const showRegisterLink = document.getElementById('show-register');
+            const showLoginLink = document.getElementById('show-login');
+
+            showRegisterLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                loginCard.style.display = 'none';
+                registerCard.style.display = 'block';
+            });
+
+            showLoginLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                registerCard.style.display = 'none';
+                loginCard.style.display = 'block';
+            });
+
+            // Basic form submission (for demonstration, no actual backend)
+            document.getElementById('login-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                speak("Login functionality is for demonstration. No actual login is performed.");
+            });
+
+            document.getElementById('register-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const password = document.getElementById('register-password').value;
+                const confirmPassword = document.getElementById('register-confirm-password').value;
+
+                if (password !== confirmPassword) {
+                    speak("Passwords do not match. Please try again.");
+                    return;
+                }
+                speak("Registration functionality is for demonstration. No actual registration is performed.");
+            });
+        });
+
+        // Voice assistant commands for this page
+        function processCommand(command) {
+            if (command.includes("go home") || command.includes("go to home page")) {
+                speak("Taking you to the home page.");
+                window.location.href = "index.html";
+                return;
+            } else if (command.includes("explore events") || command.includes("show events")) {
+                speak("Taking you to the events page.");
+                window.location.href = "events.html";
+                return;
+            } else if (command.includes("show my events") || command.includes("my activities")) {
+                speak("Taking you to your enrolled events.");
+                window.location.href = "enrolled-events.html";
+                return;
+            } else if (command.includes("go to community forum") || command.includes("forum")) {
+                speak("Navigating to the community forum.");
+                window.location.href = "community-forum.html";
+                return;
+            } else if (command.includes("go to health and resources") || command.includes("show resources") || command.includes("health info")) {
+                speak("Navigating to health and resources.");
+                window.location.href = "health-resources.html";
+                return;
+            } else if (command.includes("show register form") || command.includes("register")) {
+                document.getElementById('show-register').click();
+                speak("Showing the registration form.");
+            } else if (command.includes("show login form") || command.includes("login")) {
+                document.getElementById('show-login').click();
+                speak("Showing the login form.");
+            } else if (command.includes("enter email")) {
+                document.getElementById('login-email').focus();
+                speak("Please say your email address.");
+            } else if (command.includes("enter password")) {
+                document.getElementById('login-password').focus();
+                speak("Please say your password.");
+            } else {
+                speak("I can help you switch between login and registration forms. Just say 'Show register form' or 'Show login form'.");
+            }
+        }
+    </script>
+</body>
+</html>

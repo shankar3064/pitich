@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Enrolled Events - Reignite</title>
+    <link rel="stylesheet" href="shared-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body id="enrolled-events-page">
+    <header>
+        <div class="header-left">
+            <img src="newlogo.png" alt="Reignite Logo">
+            <h1>Reignite</h1>
+        </div>
+        <div id="ali-ai-assistant-bar">
+          <span class="mic-icon">🎤</span>
+          <span class="assistant-name">Ali the AI Assistant</span>
+          <span class="status-text">Tap to speak</span>
+        </div>
+    </header>
+
+    <nav class="navbar">
+        <ul id="navbar-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="enrolled-events.html" class="active">My Enrolled Events</a></li>
+            <li><a href="community-forum.html">Community Forum</a></li>
+            <li><a href="health-resources.html">Health & Resources</a></li>
+            <li><a href="login.html">Login/Register</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h2>My Enrolled Events</h2>
+
+        <div id="enrollment-success-message" style="display: none;">
+            <p>Enrolled Successfully!</p>
+        </div>
+
+        <div id="enrolled-events-container">
+        </div>
+        <p class="no-events-message" style="display: none;">You haven't enrolled in any events yet. <a href="events.html" class="explore-events-link">Explore events now!</a></p>
+    </main>
+
+    <div id="transcription-display"></div>
+
+    <footer>
+        <div class="footer-links">
+            <ul>
+                <li><a href="#">About Reignite</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="#">Volunteer with Us</a></li>
+                <li><a href="#">Partner with Us</a></li>
+            </ul>
+        </div>
+        <p>&copy; 2025 Reignite. All rights reserved. Connecting seniors to vibrant community life in Singapore.</p>
+    </footer>
+
+    <script src="voice-assistant.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            loadEnrolledEvents();
+            displayEnrollmentSuccessMessage(); // Check and display success message on load
+        });
+
+        // Function to display the "Enrolled Successfully!" message
+        function displayEnrollmentSuccessMessage() {
+            const successMessageDiv = document.getElementById('enrollment-success-message');
+            // Check if a flag exists in sessionStorage (set after a successful enrollment)
+            if (sessionStorage.getItem('enrollmentSuccess') === 'true') {
+                successMessageDiv.style.display = 'block';
+                // Remove the flag so the message doesn't reappear on refresh
+                sessionStorage.removeItem('enrollmentSuccess');
+                // Optionally, hide the message after a few seconds
+                setTimeout(() => {
+                    successMessageDiv.style.display = 'none';
+                }, 5000); // Message disappears after 5 seconds
+            } else {
+                successMessageDiv.style.display = 'none';
+            }
+        }
+
+
+        function loadEnrolledEvents() {
+            const enrolledEventsContainer = document.getElementById('enrolled-events-container');
+            const noEventsMessage = document.querySelector('.no-events-message');
+            let enrolledEvents = JSON.parse(localStorage.getItem('enrolledEvents')) || [];
+
+            enrolledEventsContainer.innerHTML = '';
+
+            if (enrolledEvents.length === 0) {
+                noEventsMessage.style.display = 'block';
+            } else {
+                noEventsMessage.style.display = 'none';
+                enrolledEvents.forEach(event => {
+                    const eventCard = document.createElement('div');
+                    eventCard.classList.add('event-card');
+                    eventCard.setAttribute('data-event-id', event.id);
+
+                    // Dynamically add the image if event.image exists
+                    // Make sure your event data includes an 'image' property with the correct path (e.g., 'images/yoga.jpg')
+                    const eventImageHtml = event.image ? `<img src="${event.image}" alt="${event.title}" class="event-card-main-img">` : '';
+
+                    eventCard.innerHTML = `
+                        <h2>${event.title}</h2>
+                        ${eventImageHtml} <div class="event-details">
+                            ${event.details}
+                        </div>
+                        <button class="unenroll-btn">Unenroll</button>
+                    `;
+                    enrolledEventsContainer.appendChild(eventCard);
+                });
+
+                document.querySelectorAll('.unenroll-btn').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const card = e.target.closest('.event-card');
+                        const eventId = card.getAttribute('data-event-id');
+                        const eventTitle = card.querySelector('h2').innerText;
+                        unenrollEvent(eventId, eventTitle);
+                    });
+                });
+            }
+        }
+
+        function unenrollEvent(eventId, eventTitle) {
+            let enrolledEvents = JSON.parse(localStorage.getItem('enrolledEvents')) || [];
+            enrolledEvents = enrolledEvents.filter(event => event.id !== eventId);
+            localStorage.setItem('enrolledEvents', JSON.stringify(enrolledEvents));
+            // Use the global speak function from voice-assistant.js
+            if (typeof window.speak === 'function') {
+                window.speak(`You have successfully unenrolled from ${eventTitle}.`);
+            } else {
+                console.warn("window.speak is not defined.");
+            }
+            loadEnrolledEvents();
+        }
+
+        // Voice assistant commands specific to the 'My Enrolled Events' page
+        // This function is assumed to be called by 'voice-assistant.js'
+        window.processCommand = function(command) { // Define processCommand globally
+            command = command.toLowerCase().trim();
+
+            if (command.includes("go home") || command.includes("go to home page")) {
+                speak("Taking you to the home page.");
+                window.location.href = "index.html";
+                return;
+            } else if (command.includes("explore events") || command.includes("show events")) {
+                speak("Taking you to the events page.");
+                window.location.href = "events.html";
+                return;
+            } else if (command.includes("go to community forum") || command.includes("forum")) {
+                speak("Navigating to the community forum.");
+                window.location.href = "community-forum.html";
+                return;
+            } else if (command.includes("go to health and resources") || command.includes("show resources") || command.includes("health info")) {
+                speak("Navigating to health and resources.");
+                window.location.href = "health-resources.html";
+                return;
+            } else if (command.includes("login") || command.includes("register") || command.includes("sign in")) {
+                speak("Taking you to the login and registration page.");
+                window.location.href = "login.html";
+                return;
+            } else if (command.includes("unenroll from this event") || command.includes("remove this event") || command.includes("unenroll first event")) {
+                const firstUnenrollBtn = document.querySelector('.unenroll-btn');
+                if (firstUnenrollBtn) {
+                    firstUnenrollBtn.click();
+                    speak("Attempting to unenroll from the first displayed event.");
+                } else {
+                    speak("There are no events to unenroll from, or I couldn't identify an event. Please make sure an event card is visible.");
+                }
+            } else {
+                speak("I can help you explore events, go to the community forum, or manage your enrolled events. Just say 'Explore Events' or 'Go home'.");
+            }
+        };
+
+        // Note: The window.speak fallback in your original HTML is now handled by voice-assistant.js.
+        // I've removed the duplicate definition here to prevent conflicts, as voice-assistant.js
+        // is now responsible for defining window.speak.
+        // If voice-assistant.js fails to load or define window.speak, the console.warn in unenrollEvent
+        // will still catch it.
+    </script>
+</body>
+</html>
